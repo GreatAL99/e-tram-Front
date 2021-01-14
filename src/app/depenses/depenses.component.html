@@ -1,0 +1,207 @@
+<p></p>
+<div class="container" style="margin-top: 100px;">
+    <div class="card">
+        <div class="card-header">
+            <h4 style="text-align: center;color: brown;">Vos achats</h4>
+        </div>
+        <div class="card-body">
+            <div class="float-right" style="margin-right: 100px;">
+                <div style="color:green;"><label>Nombre de tickets non encore validées :<strong>{{nv}}</strong> </label></div><hr>
+                <div style="color:red;"><label>Nombre de tickets  validées : <strong>{{v}}</strong></label></div><hr>
+                <div style="color:blue;"><label>Nombre totales de tickets : <strong>{{total}}</strong></label></div>
+
+            </div>
+    
+    <div class="chart-wrapper float-left" style="height: 300px;width: 500px;">
+        <canvas baseChart 
+        [data]="pieChartData" 
+        [labels]="pieChartLabels" 
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="chartColors"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+</div>
+</div>
+<p></p>
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" >
+                <div class="card-header">
+                     <h4 style="color: brown;">Somme de toutes les tickets achetée</h4>
+                </div>
+            <div class="card-body">
+          <hr>
+          <strong><h3>Somme totale : {{somme}} Dh</h3></strong> 
+            </div>
+        </div>
+<hr>
+      <div class="card">
+        <div class="card-header"><h4 style="text-align: center;color: brown;">Liste des tickets achetées</h4></div>
+        <div class="card-body">
+        
+        <h4 style="color:#00cc00;"><u>Les tickets non validées</u></h4><br>
+       
+        <table class="table table-bordered" style="background-color: #00cc00;margin-left: 10px;margin-right: 10px;" *ngIf="ticketsNV">
+            <tr>
+                <th>Code de validation</th>
+                <th>Prix de la ticket</th>
+            </tr>
+            <tr *ngFor="let t of ticketsNV.content" >
+                <td><strong>{{t.code_val}}</strong></td>
+                <td>{{t.prix}}</td>
+            </tr>
+        </table>
+        <ul *ngIf="pagesNV" class="nav nav-pills" style="margin-left: 10px;">
+          <li  *ngFor="let p of pagesNV;let i=index" class="nav-item  clickable">
+               <a class="nav-link" style="background-color:#00cc00 ;" data-toggle="pill" (click)="onPageTicketsNV(i)">{{i}}</a>
+        </li>
+    </ul>
+        <hr>
+        <h4 style="color:#ff6666;"><u>Les tickets validées</u></h4><br>
+       
+          
+              <table class="table table-bordered" *ngIf="ticketsV" style="background-color: #ff6666;margin-left: 10px;margin-right: 10px;">
+                  <tr>
+                      <th>Date</th>
+                      <th>Heure</th>
+                      <th>Ligne Tram</th>
+                      <th>IdTram</th>
+                      <th>Station</th>
+                      <th>Prix</th>
+                  </tr>
+                  <tr *ngFor="let t of ticketsV.content" >
+                      
+                      <td>{{t.horaire.date}}</td>
+                      <td>{{t.horaire.heure}}</td>
+                      <td>{{t.horaire.voyage.ligneTram}}</td>
+                      <td>{{t.horaire.voyage.tram.username}}</td>
+                      <td>{{t.horaire.station.name}}</td>
+                      <td>{{t.prix}}</td>
+                  </tr>
+              </table>
+              <ul *ngIf="pagesV" class="nav nav-pills" style="margin-left: 10px;">
+                <li  *ngFor="let p of pagesV;let i=index" class="nav-item  clickable">
+                     <a class="nav-link" style="background-color:#ff6666;" data-toggle="pill" (click)="onPageTicketsV(i)">{{i}}</a>
+              </li>
+          </ul>
+  
+          
+          </div>
+      </div>
+  
+        </div>
+        <div class="col-sm-6">
+            <div class="card bg-info ">
+                <div class="card-body">
+                    <strong>Votre solde : <label >{{voyageur.tramSolde}} DH</label></strong><br>
+                </div>
+            </div>
+            <hr>
+            <div class="alert alert-danger" *ngIf="mode==0 && errorMessage" >
+                <strong>{{errorMessage}}</strong>
+            </div>
+            <div class="alert alert-success" *ngIf="mode==1">
+                <strong>Achat avec Success</strong>
+            </div>
+            <hr>
+    <div class="card">
+        <div class="card-header">
+            <h4 style="text-align: center;color: brown;">Acheter des ticket</h4>
+        </div>
+        <div class="card-body">
+            <form #f="ngForm" autocomplete="off" name="form2" [formGroup]="form2">
+                <div class="form-group">
+                    <div class="row">
+                        <strong><label class="control-label float-left" style="margin-top: 8px;">Choisir le nombre de tickets </label></strong>
+                        <input type="number" min="1" name="nbTi" class="form-control col-md-6" style="margin-left: 40px;" formControlName="nbTi" ngModel="" 
+                        [ngClass]="{'is-invalid':form2.get('nbTi').touched && form2.get('nbTi').invalid}" required />
+                        <div class="invalid-feedback" style="margin-left: 260px;">
+                            <div>Le nombre de ticket est obligatoire</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>    
+                <button type="submit" [disabled]="!form2.valid" (click)="onAchete(f.value)" class="btn btn-primary col-md-4 offset-md-4">Acheter</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 style="text-align: center;color: brown;">Vos informations</h4>
+                </div>
+                <div class="card-body">
+                    <label><strong>CIN:</strong></label> {{voyageur.username}}<hr>
+                    <label><strong>Nom:</strong></label> {{voyageur.nom}}<hr>
+                    <label><strong>Prenom:</strong></label> {{voyageur.prenom}}<hr>
+                    <label><strong>Adresse:</strong></label> {{voyageur.adresse}}<hr>
+                    <label><strong>Email:</strong></label> {{voyageur.email}}<hr>
+                    <label><strong>Tel:</strong></label> {{voyageur.tel}}<hr>
+                    <label><strong>Role:</strong></label> {{voyageur.role}}
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="alert alert-success" *ngIf="mod ==1">
+                    <strong>Modification avec succes</strong>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 style="text-align: center;color: brown;">Modifier le compte</h4>
+                    </div>
+                    <div class="card-body">
+                        <form #f="ngForm" autocomplete="off" name="form" [formGroup]="form">
+                            <div class="form-group">
+                                <label class="control-label">Nom</label>
+                                <input type="text" name="nom" class="form-control" formControlName="nom" [(ngModel)]="voyageur.nom" 
+                                [ngClass]="{'is-invalid':form.get('nom').touched && form.get('nom').invalid}" required />
+                                <div class="invalid-feedback">
+                                    <div>Nom est obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Prenom</label>
+                                <input type="text" name="prenom" class="form-control" formControlName="prenom" [(ngModel)]="voyageur.prenom" 
+                                [ngClass]="{'is-invalid':form.get('prenom').touched && form.get('prenom').invalid}" required />
+                                <div class="invalid-feedback">
+                                    <div>Prenom est obligatoire</div>
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Adresse</label>
+                                <input type="text" name="adresse" class="form-control" formControlName="adresse" [(ngModel)]="voyageur.adresse" 
+                                [ngClass]="{'is-invalid':form.get('adresse').touched && form.get('adresse').invalid}" required />
+                                    <div class="invalid-feedback">
+                                       <div>Adresse est obligatoire</div>
+                                   </div>
+                             </div>
+                            <div class="form-group">
+                                <label class="control-label">Email</label>
+                                <input type="mail" name="email" class="form-control" formControlName="email" [(ngModel)]="voyageur.email" 
+                                [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}" required />
+                                    <div class="invalid-feedback">
+                                        <div>Email est obligatoire</div>
+                                    </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="control-label">Tel</label>
+                                <input type="text" name="tel" class="form-control" formControlName="tel" [(ngModel)]="voyageur.tel" 
+                                [ngClass]="{'is-invalid':form.get('tel').touched && form.get('tel').invalid}" required />
+                                <div class="invalid-feedback">
+                                    <div>Tel est obligatoire</div>
+                                </div>
+                            </div>
+                            <button type="submit"  class="btn btn-primary col-md-6 offset-md-3" [disabled]="!form.valid" (click)="updateV()" > Modifier</button>
+                            </form>
+                    </div>
+                </div>
+        </div>
+</div>
+</div>
+</div>

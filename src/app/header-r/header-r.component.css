@@ -1,0 +1,7 @@
+#mainNav.navbar-scrolled {
+    background-color: #dedede;
+  }
+  #mainNav {
+    background-color: #dedede;
+    transition: background-color 0.2s ease;
+  }

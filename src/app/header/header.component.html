@@ -1,0 +1,42 @@
+<header>
+    <nav id = "mainNav" class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top">
+        <div class="container">
+          <a class="navbar-brand" routerLink="/"><i class="fas fa-tram"></i> E-Tram</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/consulterHoraires" >Consulter les horaires</a>
+              </li>
+              <div class="vl"></div>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/offres">Voir les offres</a>
+              </li>
+              <div class="vl" *ngIf="mode == 0"></div>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/depenses" *ngIf="mode == 0">Acheter une ticket</a>
+              </li>
+              <div class="vl" *ngIf="mode == 0"></div>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login" *ngIf="mode == 0">Connexion</a>
+              </li>
+              <div class="vl" *ngIf="mode == 0"></div>
+              <li class="nav-item">
+              <a class="nav-link" routerLink="/register" *ngIf="mode == 0">Inscription</a>
+              </li>
+              <div class="vl" *ngIf="mode == 1"></div>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/depenses" *ngIf="mode == 1" >Mon Interface</a>
+              </li>
+              <div class="vl" *ngIf="mode == 1"></div>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/logout" *ngIf="mode == 1" >Déconnexion</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>

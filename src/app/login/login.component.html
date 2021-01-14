@@ -1,0 +1,48 @@
+<div style="background-image: url(../../assets/Tramway.jpg) ;margin-bottom: 10px;">
+<p></p>
+	<p></p>
+   <div class="container" style="padding: 150px">
+		<div class="alert alert-danger" *ngIf="mode==0 && errorMessage" style="width: 700px;">
+			<strong>{{errorMessage}}</strong>
+		</div>
+		<div class="alert alert-success" *ngIf="mode==1" style="width: 700px;">
+			<strong>Authentification Success</strong>
+		</div>
+	<div class="col-md-8 offset-md-2" *ngIf="mode==0">
+		<div class="card">
+		<div class="card-header" style="color : #B0C4DE;
+		text-align: center;"><h4>Authentification</h4></div>
+		<div class="card-body">
+		<form #f="ngForm" autocomplete="off" name="form" [formGroup]="form" autocomplete="off">
+		<div class="form-group">
+		<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-id-card"></i> ID ou CIN</label></strong>
+		<input type="text" name="cin" class="form-control col-md-6 offset-md-3" formControlName="cin" ngModel="" 
+		[ngClass]="{'is-invalid':form.get('cin').touched && form.get('cin').invalid}" required />
+		<div class="invalid-feedback col-md-6 offset-md-3">
+			<div>Le id est obligatoire</div>
+		</div>
+		</div>
+		<br>
+		<div class="form-group">
+		<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-key"></i> Mot de passe</label></strong>
+		<input type="password" name="password"  class="form-control col-md-6 col offset-md-3" formControlName="password"  ngModel=""
+		[ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}" required />
+		<div class="invalid-feedback col-md-6 offset-md-3">
+			<div>Password est ogligatoire</div>
+		</div>
+		</div>
+		<button type="submit"  class="btn btn-primary col-md-4 col offset-md-4" [disabled]="!form.valid"
+		 (click)="checkLogin(f.value)"> S'authentifier</button>
+		</form>
+		<hr>
+		<div style="font-size: 13px;">
+			<a href="#" class="float-left">Mot de passe oublié?</a>
+			<a routerLink="/register" class="float-right">Vous n'avez pas encore de compte?</a>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+	<hr>

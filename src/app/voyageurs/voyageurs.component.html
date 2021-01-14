@@ -1,0 +1,56 @@
+<p></p>
+<div>
+    <div class="alert alert-danger" style="text-align: center;" *ngIf="mode==0 && message">
+        <strong>Vous ne pouvez pas supprimer ce voyage car il a une ticket ou plus n'ont encore validées</strong>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+             <h4><i class="far fa-list-alt"></i> Liste des voyageurs</h4> 
+        </div>
+        <div class="card-body" >
+            <form #f="ngForm"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-secondary py-2" name="keyword" ngModel placeholder="Entrer a CIN" autocomplete="off">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary" (click)="onChercher(f.value)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <a class="btn btn-primary lien" routerLink="/edit-nombre-tickets" >Changer le nombre de ticket<i class="fas fa-plus sup"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <table class="table table-bordered" *ngIf="voyageurs" >
+                <tr>
+                    <th><i class="fas fa-id-card"></i> Cin</th><th><i class="fas fa-user-circle"></i>Nom</th>
+                    <th><i class="far fa-user-circle"></i>Prenom</th><th><i class="fas fa-address-card"></i> Adresse</th>
+                    <th><i class="fas fa-phone"></i> Tel</th><th><i class="fab fa-google"></i> Email</th>
+                    <th><i class="fas fa-dollar-sign"></i> Tram Sold(DH)</th><th><i class="fas fa-money-bill-wave"></i> Nb tickets</th>
+                </tr>
+                <tr *ngFor="let v of voyageurs._embedded.voyageurs"> 
+                    <td><strong>{{v.username}}</strong></td>
+                    <td>{{v.nom}}</td>
+                    <td>{{v.prenom}}</td>
+                    <td>{{v.adresse}}</td>
+                    <td>{{v.tel}}</td>
+                    <td>{{v.email}}</td>
+                    <td>{{v.tramSolde}}</td>
+                    <td>{{v.nbTickets}}</td>
+                    <td><a  (click)="onDeleteVoyageur(v.username)" ><i class="fas fa-trash-alt sup clickable icon"></i><strong></strong></a></td>
+                </tr>
+            </table> 
+             <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onVoyageurPage(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

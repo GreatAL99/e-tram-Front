@@ -1,0 +1,67 @@
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4>Somme par date :</h4>
+        </div>
+        <div class="card-body">
+            <form class="form-inline" #f="ngForm">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label><label><strong>Cin de R.guichet : </strong></label></label>
+                    <input type="text" class="form-control" name="cin" ngModel autocomplete="off">
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label><strong>Selectionner une date: </strong></label>
+                    <input type="date" class="form-control" name="date" ngModel>
+                </div>   
+                <button type="submit" class="btn btn-primary mb-2 d" href="#collapseExample" data-toggle="collapse" (click)="getSommeByCin(f.value)">Chercher</button>
+            </form>
+            <hr>
+            <div class="collapse" id="collapseExample" >
+                <div class="card card-body" style="background-color:#e6eeff;color :black;" >
+                    <strong>Somme totale est : <i>{{somme}}</i> DH</strong>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4><i class="far fa-list-alt"></i> Ensemble des transactions</h4> 
+        </div>
+        <div class="card-body">
+            <form #v="ngForm"> 
+                
+                <div class="form-group row">
+                    <div class="col-xs-2">
+                      <label for="ex2" class="a">Entrer le CIN du voyageur:</label>
+                      <input class="form-control a" type="text" name="cin" ngModel placeholder="cin" autocomplete="off">
+                    </div>
+                     <button type="submit" class="btn btn-primary b" (click)="chercherSolde(v.value)">chercher </button>
+                </div>
+                </form>
+                <p></p>
+            <table *ngIf="soldes" class="table table-bordered">
+                <tr>
+                    <th><i class="fas fa-id-card"></i> CIN Res Guichet</th><th><i class="fas fa-id-card"></i> CIN Voyageur</th>
+                    <th><i class="fas fa-dollar-sign"></i> Somme verser (DH)</th><th><i class="fas fa-clock"></i> Date</th>
+                </tr>
+                <tr *ngFor="let s of soldes.content">
+                    <td><strong>{{s.resGuichet.username}}</strong></td>
+                    <td>{{s.voyageur.username}}</td>
+                    <td>{{s.somme}}</td>
+                    <td>{{s.date}}</td>
+                </tr>
+            </table>
+            
+            <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onPageSoldes(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

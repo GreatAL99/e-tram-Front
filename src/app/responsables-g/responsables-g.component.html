@@ -1,0 +1,46 @@
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+             <h4><i class="far fa-list-alt"></i> Liste des Responsables de guichets</h4> 
+        </div>
+        <div class="card-body" >
+            <form #f="ngForm"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-secondary py-2" name="keyword" ngModel placeholder="Entrer a CIN" autocomplete="off">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary" (click)="onChercher(f.value)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <table class="table table-bordered" *ngIf="resGuichets">
+                <tr>
+                    <th><i class="fas fa-id-card"></i> Cin</th><th><i class="fas fa-user-circle"></i>Nom</th>
+                    <th><i class="far fa-user-circle"></i>Prenom</th><th><i class="fas fa-address-card"></i> Adresse</th>
+                    <th><i class="fas fa-phone"></i> Tel</th><th><i class="fab fa-google"></i> Email</th>
+                </tr>
+                <tr *ngFor="let r of resGuichets._embedded.resGuichets">
+                    <td><strong>{{r.username}}</strong></td>
+                    <td>{{r.nom}}</td>
+                    <td>{{r.prenom}}</td>
+                    <td>{{r.adresse}}</td>
+                    <td>{{r.tel}}</td>
+                    <td>{{r.email}}</td>
+                    <td><a  (click)="onDeleteResGuichet(r)" ><i class="fas fa-trash-alt sup clickable icon"></i><strong></strong></a></td>
+                </tr>
+            </table> 
+             <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onResGuichetPage(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<p></p>
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card"> 
+        <div class="card-header">
+            <h5>Ajouter un horaire</h5>
+        </div>
+            <div class="card-body">
+                <form #f="ngForm" name="form" [formGroup]="form">
+                <div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Choisir une date:
+                        </label>
+                        <input type="date" class="form-control" formControlName="date" [(ngModel)]="horaire.date" 
+                        [ngClass]="{'is-invalid':form.get('date').touched && form.get('date').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Date is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Choisir l'heure :
+                        </label>
+                        <input type="time" class="form-control" formControlName="heure" [(ngModel)]="horaire.heure" [ngClass]="{'is-invalid':form.get('heure').touched && form.get('heure').invalid}"  required />
+                        <div class="invalid-feedback">
+                            <div>Time is required</div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="form-group" >
+                    <label for="sel1">Choisir la station de tram:</label>
+                    <select class="form-control" id="sel1" [(ngModel)]="horaire.station.id" 
+                    formControlName="id" [ngClass]="{'is-invalid':form.get('id').touched && form.get('id').invalid}" 
+                    ngModel required>
+                      <option *ngFor="let s of stations" [ngValue]="s.id">{{s.name}}</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        <div>station of tram is required</div>
+                    </div>
+                </div>
+                    <div class="form-group" *ngIf="voyages">
+                        <label for="sel1">Choisir la ligne de tram:</label>
+                        <select class="form-control" id="sel1" [(ngModel)]="horaire.voyage.id_voyage" formControlName="id_voyage" [ngClass]="{'is-invalid':form.get('id_voyage').touched && form.get('id_voyage').invalid}" ngModel required>
+                          <option *ngFor="let v of voyages._embedded.voyages" [ngValue]="v.id_voyage">{{v.ligneTram}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <div>Line of tram is required</div>
+                        </div>
+                    </div>
+                <button class="btn btn-primary" [disabled]="!form.valid" (click)="onSaveHoraire()">Ajouter</button>
+            </form>
+                <!--
+                <form #f="ngForm" name="form" [formGroup]="form">
+
+                    <div class="form-group">
+                        <input type="text" name="date" class="form-control"  placeholder="Date" 
+                         formControlName="date" [ngClass]="{'is-invalid':form.get('date').touched && form.get('date').invalid}"  required />
+                        <div class="invalid-feedback">id"
+                            <div>Date is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="heure"  class="form-control"  placeholder="Heure"
+                        formControlName="heure" [ngClass]="{'is-invalid':form.get('heure').touched && form.get('heure').invalid}" ngModel required/>
+                        <div class="invalid-feedback">
+                            <div>Heure is required</div>
+                        </div>
+                    </div>
+                    <div formGroupName="station" name="station">
+                        <div class="form-group">
+                            <input type="text" name="station.id"  class="form-control"  placeholder="station"
+                            formControlName="id" [ngClass]="{'is-invalid':form.get('id').touched && form.get('id').invalid}" [(ngModel)]="station.id" required/>
+                            <div class="invalid-feedback">
+                                <div>Station is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div formGroupName="voyage" name="voyage">
+                        <div class="form-group">
+                            <input type="text" name="voyage.id_voyage"  class="form-control"  placeholder="voyage"
+                            formControlName="id_voyage" [ngClass]="{'is-invalid':form.get('id_voyage').touched && form.get('id_voyage').invalid}" [(ngModel)]="voyage.id_voyage" required/>
+                            <div class="invalid-feedback">
+                                <div>Voyage is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success" [disabled]="!form.valid"   (click)="onSaveHoraire(f.value)">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body"  *ngIf="mode == 2">
+                <button type="submit" class="btn btn-success" (click)="onNewStation()">
+                    Nouveau station
+                </button>
+                <p></p>
+                <div class="form-group">
+                    <label class="label">Nom : </label><label>{{currentStation.name}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="label">Adresse : </label><label>{{currentStation.adresse}}</label>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>

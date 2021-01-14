@@ -1,0 +1,101 @@
+<p></p>
+<div class="container" style="margin-top: 100px;margin-left: 0px;margin-bottom: 100px;">
+    <div class="row">
+        <div class="col-md-6">
+    <div class="alert alert-danger" *ngIf="mode==0 && errorMessage" >
+        <strong>{{errorMessage}}</strong>
+    </div>
+    <div class="alert alert-success" *ngIf="mode==1">
+        <strong>Somme ajoutée</strong>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-header bg-info">
+            <h4 style="text-align: center;">Alimenter une compte</h4>
+        </div>
+        <div class="card-body">
+            <form #f="ngForm" autocomplete="off" name="form" [formGroup]="form">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">CIN du voyageur : </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="cinV" autocomplete="off" class="form-control" [(ngModel)]="cinV"
+                        formControlName="cinV" [ngClass]="{'is-invalid':form.get('cinV').touched && form.get('cinV').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>CIN est obligatoire</div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group row">  
+                    <label class="col-sm-4 col-form-label">Somme (DH) : </label>
+                    <div class="col-sm-6">
+                        <input type="text" autocomplete="off" name="somme" class="form-control" [(ngModel)]="somme"
+                        formControlName="somme" [ngClass]="{'is-invalid':form.get('somme').touched && form.get('somme').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>La somme est obligatoire et doit etre > 10 DH</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" [disabled]="!form.valid" style="text-align: center;" class="btn btn-info" (click)="alimenter(cinV,somme)">Alimenter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    
+    <div class="col-md-6">
+        <hr>
+        <div class="card">
+        <div class="card-header bg-info">
+            <h4 style="text-align: center;">Votre compte</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <label><strong>CIN:</strong></label> {{res.username}}<hr>
+                    <label><strong>Nom:</strong></label> {{res.nom}}<hr>
+                    <label><strong>Prenom:</strong></label> {{res.prenom}}<hr>
+                    <label><strong>Adresse:</strong></label> {{res.adresse}}<hr>
+                    <label><strong>Email:</strong></label> {{res.email}}<hr>
+                    <label><strong>Tel:</strong></label> {{res.tel}}<hr>
+                    <label><strong>Role:</strong></label> {{res.role}}
+                </div>
+                <div class="vl2"></div>
+                <div class="col-md-6" style="margin-top: 65px;">
+                    <div class="alert alert-success" *ngIf="mode2 ==1">
+                        <strong>Modification avec succes</strong>
+                    </div>
+                    <form name="form2" [formGroup]="form2" >
+                        <input type="text" class="form-control" name="nom" [(ngModel)]="res.nom" formControlName="nom" [ngClass]="{'is-invalid':form2.get('nom').touched && form2.get('nom').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Nom obligatoire</div>
+                        </div><br>
+                        <input type="text" class="form-control" name="prenom" [(ngModel)]="res.prenom" formControlName="prenom" [ngClass]="{'is-invalid':form2.get('prenom').touched && form2.get('prenom').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Prenom obligatoire</div>
+                        </div><br>
+                        <input type="text" class="form-control" name="adresse" [(ngModel)]="res.adresse" formControlName="adresse" [ngClass]="{'is-invalid':form2.get('adresse').touched && form2.get('adresse').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Adresse obligatoire</div>
+                        </div><br>
+                        <input type="text" class="form-control" name="email" [(ngModel)]="res.email" formControlName="email" [ngClass]="{'is-invalid':form2.get('email').touched && form2.get('email').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Email obligatoire</div>
+                        </div><br>
+                        <input type="text" class="form-control" name="nom" [(ngModel)]="res.tel" formControlName="tel" [ngClass]="{'is-invalid':form2.get('tel').touched && form2.get('tel').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Tel obligatoire</div>
+                        </div><br>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" [disabled]="!form2.valid" style="text-align: center;" class="btn btn-info" (click)="updateR()">Modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,36 @@
+<p></p>
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card"> 
+        <div class="card-header">
+            <h5>Modifier un voyage</h5>
+        </div>
+            <div class="card-body">
+                <form #f="ngForm" name="form" [formGroup]="form">
+                <div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Ligne de tram:
+                        </label>
+                        <input type="number" min="1" max="2" class="form-control" formControlName="ligne" [(ngModel)]="voyage.ligneTram" 
+                        [ngClass]="{'is-invalid':form.get('ligne').touched && form.get('ligne').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Line is required</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-group" *ngIf="trams">
+                    <label for="sel1">Nom de tram:</label>
+                    <select class="form-control" id="sel1" [(ngModel)]="voyage.tram.id_tram" formControlName="id_tram" [ngClass]="{'is-invalid':form.get('id_tram').touched && form.get('id_tram').invalid}" ngModel required>
+                      <option *ngFor="let t of trams" [ngValue]="t.id_tram">{{t.nom}}</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        <div>Name of tram is required</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" [disabled]="!form.valid" (click)="onUpdateVoyage()">Modifier</button>
+            </form>
+        </div>
+    </div>
+</div>

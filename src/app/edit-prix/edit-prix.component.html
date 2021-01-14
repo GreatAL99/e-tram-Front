@@ -1,0 +1,27 @@
+<p></p>
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card"> 
+        <div class="card-header">
+            <h5>Modifier le prix</h5>
+        </div>
+            <div class="card-body">
+                <form #f="ngForm" name="form" [formGroup]="form">
+                <div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Prix:
+                        </label>
+                        <input type="text" name="ticket"  class="form-control" formControlName="prix" [(ngModel)]="ticket" 
+                        [ngClass]="{'is-invalid':form.get('prix').touched && form.get('prix').invalid}" required />
+                        <div class="invalid-feedback">
+                            <div>Champ obligatoire</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <button class="btn btn-primary" [disabled]="!form.valid" (click)="onUpdateTicket(ticket)">Modifier</button>
+            </form>
+        </div>
+    </div>
+</div>

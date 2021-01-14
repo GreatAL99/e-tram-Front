@@ -1,0 +1,62 @@
+<p></p>
+<div class="container" style="padding: 60px;">
+   <img  class="responsive"  src="../assets/t1.png"   alt="img" width="100%" height="400px"> 
+   <br><hr>
+    <div class="card">
+        <div class="card-header">
+            <h4><i class="far fa-list-alt"></i> Liste des horaires</h4> 
+        </div>
+        <div class="card-body">
+            <form #f="ngForm"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                           <div class="form-group col-md-3"> 
+                              <label>  <strong> Choisir une ligne: </strong>  </label>
+                              <select  name="ligne"   class="form-control" ngModel >
+                               <option *ngFor="let v of  voyages._embedded.voyages"  [ngValue]="v.ligneTram"> {{v.ligneTram}}</option>
+                            </select>
+                            </div> 
+                            <div class="form-group col-md-3" *ngIf="stations"> 
+                              <label for="sel1" >  <strong> Choisir une station  </strong></label>
+                              <select  name="station"  id="sel1" class="form-control" ngModel >
+                                <option *ngFor="let s of  stations"  [ngValue]="s.name"> {{s.name}}</option>
+                             </select>
+                           </div>
+                           <div class="form-group col-md-3" *ngIf="stations"> 
+                              <label for="sel1" >  <strong> Choisir une date  </strong></label>
+                                    <input type="date" class="form-control" name="date" ngModel placeholder="search">
+                           </div>
+                        
+                        <div class="form-group col-md-3">
+                           <button type="submit" class="btn btn-outline-secondary" style="margin-top: 30px;" (click)="onChercherH(f.value)">
+                               <i class="fa fa-search"></i>
+                           </button>
+                      </div>
+                     </div>
+                     </div>
+                            
+                </div>
+            </form>
+            <p></p>
+            <table *ngIf="horaires" class="table table-bordered">
+                <tr>
+                    <th><i class="far fa-calendar-alt"></i> Date</th><th><i class="fas fa-clock"></i> Heure</th>
+                    <th><i class="fa fa-train" aria-hidden="true"></i> Station</th><th><i class="fas fa-road"></i> Ligne</th>
+                </tr>
+                <tr *ngFor="let h of horaires.content">
+                    <td>{{h.date}}</td>
+                    <td>{{h.heure}}</td>
+                    <td>{{h.station.name}}</td>
+                    <td>{{h.voyage.ligneTram}}</td>
+                </tr>
+            </table>
+            
+            <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onPageHoraire(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

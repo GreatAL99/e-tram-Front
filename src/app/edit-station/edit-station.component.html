@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card">
+        <div class="card-header">
+            <h5><i class="fa fa-edit" style="font-size:24px"></i> Modifier la station</h5>
+        </div>
+        <div class="card-body" *ngIf="currentStation">
+            <form #f="ngForm" name="form" [formGroup]="form">
+                <div class="form-group">
+                    <label class="label-form">Nom : </label>
+                    <input type="text" class="form-control"   ngModel [(ngModel)]="currentStation.name" 
+                    formControlName="name" [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"  required/>
+                    <div class="invalid-feedback">
+                        <div>Name is required</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="label-form">Adresse : </label>
+                    <input type="text" class="form-control" ngModel  [(ngModel)]="currentStation.adresse"
+                    formControlName="adresse" [ngClass]="{'is-invalid':form.get('adresse').touched && form.get('adresse').invalid}"  required/> 
+                    <div class="invalid-feedback">
+                        <div>Adresse is required</div>
+                    </div>
+                </div>
+                <button  class="btn btn-success" [disabled]="!form.valid" (click)="onUpdateStation(f.value)">Modifier</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>

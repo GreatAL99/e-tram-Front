@@ -1,0 +1,26 @@
+.clickable
+{
+    cursor: pointer;
+}
+h4
+{
+    color : #B0C4DE;
+    text-align: center;
+}
+th{
+    color : #B0C4DE;
+}
+
+#navbarDropdown
+{
+    color : #B0C4DE;
+}
+.lien
+{
+    margin-left:20px;
+}
+
+.sup
+{
+    margin-left: 10px;
+}

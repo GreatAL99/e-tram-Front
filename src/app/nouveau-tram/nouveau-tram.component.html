@@ -1,0 +1,64 @@
+<p></p>
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card"> 
+        <div class="card-header">
+            <h5>Ajouter un Tram</h5>
+        </div>
+        
+            <div class="card-body">
+                <form #f="ngForm" name="form" [formGroup]="form">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Nom" 
+                         formControlName="nom" [ngClass]="{'is-invalid':form.get('nom').touched && form.get('nom').invalid}" ngModel required />
+                        <div class="invalid-feedback">
+                            <div>Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text"  class="form-control"  placeholder="Model"
+                        formControlName="type" [ngClass]="{'is-invalid':form.get('type').touched && form.get('type').invalid}" ngModel required/>
+                        <div class="invalid-feedback">
+                            <div>Type is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text"  class="form-control"  placeholder="Etat"
+                        formControlName="etat_fonc" [ngClass]="{'is-invalid':form.get('etat_fonc').touched && form.get('etat_fonc').invalid}" ngModel required/>
+                        <div class="invalid-feedback">
+                            <div>Etat is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text"  class="form-control"  placeholder="Password"
+                        formControlName="password" [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}" ngModel required/>
+                        <div class="invalid-feedback">
+                            <div>Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success"  [disabled]="!form.valid" (click)="onSaveTram(f.value)">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+            <!--
+            <div class="card-body"  *ngIf="mode == 2">
+                <button type="submit" class="btn btn-success" (click)="onNewStation()">
+                    Nouveau station
+                </button>
+                <p></p>
+                <div class="form-group">
+                    <label class="label">Nom : </label><label>{{currentStation.name}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="label">Adresse : </label><label>{{currentStation.adresse}}</label>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>

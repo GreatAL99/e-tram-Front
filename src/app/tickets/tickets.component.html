@@ -1,0 +1,72 @@
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4> Statistiques </h4>
+        </div>
+        <div class="card-body">
+           <div style="color:red;"><label>Nombre de tickets non encore validées :<strong>{{nv}}</strong> </label></div> <hr>
+            <div style="color:blue;"><label>Nombre de tickets  validées : <strong>{{v}}</strong></label></div><hr>
+
+
+        </div>
+<hr>
+    
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [data]="pieChartData" 
+        [labels]="pieChartLabels" 
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="chartColors"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+</div>
+<p></p>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4><i class="far fa-list-alt"></i> L'ensemble des tickets</h4> 
+        </div>
+        <div class="card-body">
+            <form #f="ngForm" class="form-inline"> 
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label><label><strong>Selectionner une date : </strong></label></label>
+                            <input class="form-control"  type="date" name="date" ngModel>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label><strong>Entrer Cin du voyageur: </strong></label>
+                            <input class="form-control" id="ex2" type="text" name="cin" ngModel placeholder="cin" autocomplete="off">                    
+                        </div>                 
+                     <button type="submit" class="btn btn-primary b" (click)="chercherTicket(f.value)">chercher </button>
+                </form>
+                <p></p>
+                <div class="form-group row">
+                    <button class="btn btn-primary d" (click)="onEditPrix()">Changer le prix</button>
+                    <button class="btn btn-primary e" (click)="onDeleteVal()">Effacer les tickets validés</button>
+                </div>
+            <p></p>
+            <table *ngIf="tickets" class="table table-bordered">
+                <tr>
+                    <th><i class="fas fa-id-card"></i> cin</th><th><i class="far fa-calendar-alt"></i> date</th>
+                    <th><i class="fas fa-check"></i> etat de validation</th><th><i class="fas fa-dollar-sign"></i> prix(DH)</th>
+                </tr>
+                <tr *ngFor="let t of tickets.content" >
+                        <td  *ngIf="t.horaire.date"><strong>{{t.voyageur.username}}</strong></td>
+                        <td *ngIf="t.horaire.date">{{t.horaire.date}}</td>
+                        <td *ngIf="t.horaire.date">{{t.etat_val}}</td>
+                        <td *ngIf="t.horaire.date">{{t.prix}}</td>  
+                </tr>
+            </table>
+            
+            <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onPageTicket(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

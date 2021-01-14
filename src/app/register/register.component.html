@@ -1,0 +1,103 @@
+<div style="background-image: url(../../assets/Tramway.jpg) ;margin-bottom: 10px;">
+<p></p>
+	<p></p>
+   <div class="container" style="padding: 150px">
+	<div class="alert alert-danger" *ngIf="mode==0 && errorMessage" style="width: 700px;">
+		<strong>{{errorMessage}}</strong>
+	</div>
+	<div class="alert alert-success" *ngIf="mode==1" style="width: 700px;">
+		<strong>Inscription avec Success</strong>
+	</div>
+	<div style="width: 600px;margin-left: 50px;" *ngIf="mode==0">
+		<div class="card">
+		<div class="card-header" style="color : #B0C4DE;
+		text-align: center;"><h4>Inscription</h4></div>
+		<div class="card-body">
+		<form #f="ngForm" autocomplete="off" name="form" [formGroup]="form">
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-id-card"></i> CIN</label></strong>
+				<input type="text" name="cin" class="form-control col-md-6 offset-md-3" formControlName="cin" [(ngModel)]="voyageur.username" 
+				[ngClass]="{'is-invalid':form.get('cin').touched && form.get('cin').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>CIN est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-user"></i> Nom</label></strong>
+				<input type="text" name="nom" class="form-control col-md-6 offset-md-3" formControlName="nom" [(ngModel)]="voyageur.nom" 
+				[ngClass]="{'is-invalid':form.get('nom').touched && form.get('nom').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Nom est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-user"></i> Prénom</label></strong>
+				<input type="text" name="prenom" class="form-control col-md-6 offset-md-3" formControlName="prenom" [(ngModel)]="voyageur.prenom"
+				[ngClass]="{'is-invalid':form.get('prenom').touched && form.get('prenom').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Prénom est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-address-card"></i> Adresse</label></strong>
+				<input type="text" name="adresse" class="form-control col-md-6 offset-md-3" formControlName="adresse" [(ngModel)]="voyageur.adresse"
+				[ngClass]="{'is-invalid':form.get('adresse').touched && form.get('adresse').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Adresse est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-envelope"></i> Email</label></strong>
+				<input type="email" name="email" class="form-control col-md-6 offset-md-3" formControlName="email" [(ngModel)]="voyageur.email" 
+				[ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Email est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-phone"></i> Telephone</label></strong>
+				<input type="text" name="tel" class="form-control col-md-6 offset-md-3" formControlName="tel" [(ngModel)]="voyageur.tel"
+				[ngClass]="{'is-invalid':form.get('tel').touched && form.get('tel').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div> Num de Telephone est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-key"></i> Mot de passe</label></strong>
+				<input type="password" name="password" class="form-control col-md-6 offset-md-3" formControlName="password" [(ngModel)]="voyageur.password" 
+				[ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Mot de passe est obligatoire</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<strong><label class="control-label float-left" style="margin-top: 8px;"><i class="fas fa-key"></i> Repéter mdp</label></strong>
+				<input type="password" name="repassword" class="form-control col-md-6 offset-md-3" formControlName="repassword" [(ngModel)]="voyageur.repassword" 
+				[ngClass]="{'is-invalid':form.get('repassword').touched && form.get('repassword').invalid}" required />
+				<div class="invalid-feedback col-md-6 offset-md-3">
+					<div>Repeter le mot de passe</div>
+				</div>
+			</div>
+			<br>
+			<button type="submit"  class="btn btn-primary col-md-4 col offset-md-4" [disabled]="!form.valid"
+			  (click)="onSaveVoyageur()" > S'inscrire</button>		
+		</form>
+		<hr>
+		<div style="font-size: 13px;">
+			<a href="#" class="float-left">Mot de passe oublié?</a>
+			<a routerLink="/login" class="float-right">Vous avez déjà un compte?</a>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+
+	</div>	
+	

@@ -1,0 +1,48 @@
+<p></p>
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card"> 
+        <div class="card-header">
+            <h5>Ajouter une station</h5>
+        </div>
+        
+            <div class="card-body">
+                <form #f="ngForm" name="form" [formGroup]="form">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Name" 
+                         formControlName="name" [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}" ngModel required />
+                        <div class="invalid-feedback">
+                            <div>Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text"  class="form-control"  placeholder="Adresse"
+                        formControlName="adresse" [ngClass]="{'is-invalid':form.get('adresse').touched && form.get('adresse').invalid}" ngModel required/>
+                        <div class="invalid-feedback">
+                            <div>Adresse is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success"  [disabled]="!form.valid" (click)="onSaveStation(f.value)">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+            <!--
+            <div class="card-body"  *ngIf="mode == 2">
+                <button type="submit" class="btn btn-success" (click)="onNewStation()">
+                    Nouveau station
+                </button>
+                <p></p>
+                <div class="form-group">
+                    <label class="label">Nom : </label><label>{{currentStation.name}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="label">Adresse : </label><label>{{currentStation.adresse}}</label>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>

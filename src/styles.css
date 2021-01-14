@@ -1,0 +1,222 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+ body{
+  background-color:#B0C4DE ;
+}
+
+.carousel-item {
+ height: 100vh;
+ min-height: 300px;
+ background: no-repeat center center scroll;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+.carousel-caption{
+ bottom: 30%;
+ width:600px;
+ margin: 0 auto;
+
+
+}
+.carousel-caption h3{
+ font-size: 50px;
+ font-weight: bold;
+ 
+}
+.carousel-caption p{
+ font-size: 20px;
+ font-weight: bold;	
+}
+.btn-primary{
+ border-radius: 0;
+}
+.portfolio-item {
+ margin-bottom: 30px;
+}
+.navbar
+{
+ background: transparent;
+}
+
+#mainNav {
+ box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+ background-color: #fff;
+ transition: background-color 0.2s ease;
+}
+
+#mainNav .navbar-brand {
+ font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+ font-weight: 1000;
+ font-size: 30px;
+ color:  #200601;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+ color:  #200601;
+ font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+ font-weight: 700;
+ font-size: 0.9rem;
+ padding: 0.75rem 0;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
+ color: #6b6b47;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active {
+ color: #f4623a !important;
+}
+
+@media (min-width: 992px) {
+ #mainNav {
+   box-shadow: none;
+   background-color: transparent;
+ }
+ #mainNav .navbar-brand {
+   color: #200601;
+ }
+ #mainNav .navbar-brand:hover {
+   color: #611505;
+ }
+ #mainNav .navbar-nav .nav-item .nav-link {
+   color: #200601;
+   padding: 0 1rem;
+ }
+ #mainNav .navbar-nav .nav-item .nav-link:hover {
+   color:  #611505;
+ }
+ #mainNav .navbar-nav .nav-item:last-child .nav-link {
+   padding-right: 0;
+ }
+ #mainNav.navbar-scrolled {
+   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+   background-color: #fff;
+ }
+ #mainNav.navbar-scrolled .navbar-brand {
+   color:#611505;
+ }
+ #mainNav.navbar-scrolled .navbar-brand:hover {
+   color:  #611505;
+ }
+ #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link {
+   color: #212529;
+ }
+ #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
+   color: #611505;
+;
+ }
+}
+.nav-item
+{
+ margin-right: 20px;
+}
+.vl {
+ border-left: 1px solid  #200601;
+ height: 30px;
+}
+.vl2 {
+  border-left: 1px solid  #200601;
+  height: 450px;
+ }
+.mt-30
+{
+ margin-top: 40px;
+}
+.mb-30{
+ margin-bottom: 40px;
+}
+
+
+.readm
+{
+ position: relative;
+   top: 32px;
+}
+.pa{
+ position: relative;
+   top: 13px;
+}
+.fa{
+ margin: 17px;
+ color: white;
+
+}
+
+.content-team{
+background: #6D1C0B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left#B0C4DE ,#B0C4DE);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left,#B0C4DE, #B0C4DE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+padding: 100px;
+color: #200601;
+
+}
+.row p
+{
+ position: relative;
+ top: 40px;
+  
+}
+.row h4{
+ margin: 0 auto;
+}
+.btn-secondary{
+ background: black;
+ border-radius: 0;
+ font-size: 15px;
+ color:white;
+ padding: 12px 40px;
+ position: relative;
+   top: 192px;
+   left: 13px;
+   border: 5px solid #fff;
+}
+.content-location{
+ padding: 100px;
+
+}
+
+.content-location span{
+ display: block;
+}
+.content-location .loca{
+ color: blue;
+ display: block;
+ font-weight: bold;
+ font-size: 15px;
+}
+.content-one{
+ padding: 100px;
+ background: #eee;
+ width: 10px;
+}
+.content-one h4{
+ font-weight: bold;
+}
+.btn-secondary1 {
+ background: white;
+ border-bottom: 1px solid #fff;
+ border-radius: 0;
+ font-size: 15px;
+ font-weight: bold;
+ color:black;
+ padding: 12px 40px;
+ position: relative;
+   top: 244px;
+   left: 13px;
+   border: 5px solid #fff;
+}
+.conPad{
+ padding-bottom: 26px;
+   padding-top: 10px;
+   color: #200601;
+}

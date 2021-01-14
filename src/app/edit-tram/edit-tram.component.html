@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="col-md-9 col-sm-6 col-xs-12" >
+    <div class="card">
+        <div class="card-header">
+            <h5><i class="fa fa-edit" style="font-size:24px"></i> Modifier le tram</h5>
+        </div>
+        <div class="card-body" *ngIf="currentTram">
+            <form #f="ngForm" name="form" [formGroup]="form">
+                <div class="form-group">
+                    <label class="label-form">Nom : </label>
+                    <input type="text" class="form-control"   ngModel [(ngModel)]="currentTram.nom" 
+                    formControlName="nom" [ngClass]="{'is-invalid':form.get('nom').touched && form.get('nom').invalid}"  required/>
+                    <div class="invalid-feedback">
+                        <div>Name is required</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="label-form">Model : </label>
+                    <input type="text" class="form-control" ngModel  [(ngModel)]="currentTram.type"
+                    formControlName="type" [ngClass]="{'is-invalid':form.get('type').touched && form.get('type').invalid}"  required/> 
+                    <div class="invalid-feedback">
+                        <div>Type is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="label-form">Etat : </label>
+                    <input type="text" class="form-control" ngModel  [(ngModel)]="currentTram.etat_fonc"
+                    formControlName="etat_fonc" [ngClass]="{'is-invalid':form.get('etat_fonc').touched && form.get('etat_fonc').invalid}"  required/> 
+                    <div class="invalid-feedback">
+                        <div>etat is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="label-form">Password : </label>
+                    <input type="text" class="form-control" ngModel  [(ngModel)]="currentTram.password"
+                    formControlName="password" [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}"  required/> 
+                    <div class="invalid-feedback">
+                        <div>password is required</div>
+                    </div>
+                </div>
+                <button  class="btn btn-success" [disabled]="!form.valid" (click)="onUpdateTram(f.value)">Modifier</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>

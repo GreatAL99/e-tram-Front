@@ -1,0 +1,49 @@
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4><i class="far fa-list-alt"></i> Liste des horaires</h4> 
+        </div>
+        <div class="card-body">
+            <form #f="ngForm"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="date" class="form-control border-secondary py-2"  name="date" ngModel placeholder="search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary" (click)="onChercher(f.value)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <a class="btn btn-primary lien" routerLink="/nouveau-horaire" >Ajouter<i class="fas fa-plus sup"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <table *ngIf="horaires" class="table table-bordered">
+                <tr>
+                    <th><i class="far fa-calendar-alt"></i> Date</th><th><i class="fas fa-clock"></i> Heure</th>
+                    <th><i class="fa fa-train" aria-hidden="true"></i> Station</th><th><i class="fas fa-road"></i> Ligne</th>
+                </tr>
+                <tr *ngFor="let h of horaires.content">
+                    <td>{{h.date}}</td>
+                    <td>{{h.heure}}</td>
+                    <td>{{h.station.name}}</td>
+                    <td>{{h.voyage.ligneTram}}</td>
+                    <td><a class="btn btn-danger supp" (click)="onDeleteHoraire(h.id_horaire)" >Supprimer<i class="fas fa-trash-alt sup"></i></a></td>
+                   <td><a class="btn btn-success supp" (click)="onEditHoraire(h.id_horaire)" >Modifier <i class="fa fa-edit"></i></a></td>
+                
+                 
+
+                </tr>
+            </table>
+            
+            <ul *ngIf="pages" class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item">
+                     <a class="nav-link"  data-toggle="pill" (click)="onPageHoraire(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>

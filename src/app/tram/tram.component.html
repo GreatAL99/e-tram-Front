@@ -1,0 +1,45 @@
+<p></p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+             <h4><i class="far fa-list-alt"></i> Liste des Trams</h4> 
+        </div>
+        <div class="card-body" >
+            <form #f="ngForm"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-secondary py-2" name="keyword" ngModel placeholder="search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary" (click)="onChercher(f.value)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <a class="btn btn-primary lien" routerLink="/nouveau-tram" >Ajouter<i class="fas fa-plus sup"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <table class="table table-bordered" *ngIf="trams">
+                <tr>
+                    <th><i class="fa fa-train" aria-hidden="true"></i> Nom</th><th><i class="fa fa-star" aria-hidden="true"></i> Modele</th><th><i class="fas fa-ban"></i> Etat</th>
+                 
+                </tr>
+                <tr *ngFor="let t of trams._embedded.trams">
+                    <td>{{t.nom}}</td>
+                    <td>{{t.type}}</td>
+                    <td>{{t.etat_fonc}}</td>
+                    <td><a class="btn btn-danger supp" (click)="onDeleteTram(t)" >Supprimer<i class="fas fa-trash-alt sup"></i></a></td>
+                    <td><a class="btn btn-success supp" (click)="onEditTram(t)" >Modifier <i class="fa fa-edit"></i></a></td>
+                </tr>
+            </table> 
+             <ul  class="nav nav-pills">
+                <li  *ngFor="let p of pages;let i=index" class="nav-item clickable">
+                     <a class="nav-link"  data-toggle="pill" (click)="onTramPage(i)">{{i}}</a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>
